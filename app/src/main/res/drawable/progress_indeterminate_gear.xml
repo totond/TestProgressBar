@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:top="20dp"
+        android:bottom="20dp"
+        android:left="20dp"
+        android:right="20dp">
+
+        <rotate
+            android:drawable="@drawable/gear_1"
+            android:pivotX="50%"
+            android:pivotY="50%"
+            android:fromDegrees="0"
+            android:toDegrees="360" />
+
+    </item>
+
+    <item
+        android:top="60dp"
+        android:bottom="60dp"
+        android:left="60dp"
+        android:right="60dp">
+
+        <rotate
+            android:drawable="@drawable/gear_2"
+            android:pivotX="50%"
+            android:pivotY="50%"
+            android:fromDegrees="0"
+            android:toDegrees="-360" />
+    </item>
+
+</layer-list>
