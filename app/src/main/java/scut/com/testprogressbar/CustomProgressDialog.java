@@ -10,9 +10,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-/**
- * Created by yany on 2017/4/24.
- */
+
 
 public class CustomProgressDialog extends Dialog {
     private ProgressBar progressBar;
@@ -22,25 +20,24 @@ public class CustomProgressDialog extends Dialog {
     public CustomProgressDialog(Context context) {
         //一开始就设置为透明背景
         super(context, R.style.transparent_dialog);
-        createLoadingDialog(context);
+        init(context);
     }
 
 
-    public void createLoadingDialog(final Context context) {
+    public void init(final Context context) {
 
         LayoutInflater inflater = LayoutInflater.from(context);
-        View v = inflater.inflate(R.layout.custom_dialog_layout, null);// 得到加载view
-        LinearLayout layout = (LinearLayout) v.findViewById(R.id.dialog_view);// 加载布局
-
+        //得到加载的view
+        View v = inflater.inflate(R.layout.custom_dialog_layout, null);
+        //加载布局
+        LinearLayout layout = (LinearLayout) v.findViewById(R.id.dialog_view);
         progressBar = (ProgressBar) v.findViewById(R.id.pb_Circle);
         tv_msg = (TextView) v.findViewById(R.id.tv_msg);
         tv_progress = (TextView) v.findViewById(R.id.tv_progress);
 
 
 
-//        loadingDialog.setCancelable(false);// 不可以用“返回键”取消
-
-        //不可通过点击外面区域取消
+        //设置不可通过点击外面区域取消
         setCanceledOnTouchOutside(false);
         setOnCancelListener(new OnCancelListener() {
             @Override
@@ -48,9 +45,11 @@ public class CustomProgressDialog extends Dialog {
                 Toast.makeText(context,"加载取消",Toast.LENGTH_SHORT).show();
             }
         });
+
+        // 设置布局，设为全屏
         setContentView(layout, new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT));// 设置布局
+                LinearLayout.LayoutParams.MATCH_PARENT));
 
     }
 
@@ -69,8 +68,9 @@ public class CustomProgressDialog extends Dialog {
         return progressBar;
     }
 
+    //设置进度
     public void setProgress(int progress){
-        tv_progress.setText(progress + "%");
+        tv_progress.setText(progress*100/progressBar.getMax() + "%");
         progressBar.setProgress(progress);
     }
 }
